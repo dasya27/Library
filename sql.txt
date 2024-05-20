@@ -1,0 +1,25 @@
+CREATE TABLE students (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    lastname VARCHAR(50) NOT NULL,
+ surname VARCHAR(50) NOT NULL
+);
+
+-- Создание таблицы "Книги"
+CREATE TABLE books (
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(100) NOT NULL,
+    author VARCHAR(50) NOT NULL,
+    cost INTEGER NOT NULL
+);
+
+-- Создание таблицы "Выдача книг"
+CREATE TABLE issues (
+    id SERIAL PRIMARY KEY,
+    student_id INTEGER REFERENCES students(id) ON DELETE CASCADE,
+    book_id INTEGER REFERENCES books(id) ON DELETE CASCADE,
+    start_date DATE NOT NULL,
+ end_date DATE NOT NULL,
+    ret BOOLEAN DEFAULT FALSE,
+    lost BOOLEAN DEFAULT FALSE
+);
